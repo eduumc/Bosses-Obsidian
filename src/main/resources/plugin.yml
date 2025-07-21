@@ -1,0 +1,23 @@
+name: Bosses-Obsidian
+version: 1.0.0
+main: us.edumc_.obsidianstudios.bosses.Bosses
+api-version: 1.19
+author: Edumc_
+description: Un framework avanzado para crear jefes personalizados.
+
+commands:
+  boss:
+    description: Comando principal para gestionar los jefes.
+    usage: /boss <spawn|reload|list>
+    aliases: [ob, customboss]
+
+permissions:
+  obsidianbosses.admin:
+    description: Permite usar todos los comandos de administración del plugin.
+    default: op
+  obsidianbosses.spawn:
+    description: Permite invocar jefes.
+    default: op
+  obsidianbosses.reload:
+    description: Permite recargar la configuración del plugin.
+    default: op

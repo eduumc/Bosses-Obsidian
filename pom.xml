@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Coordenadas únicas de tu proyecto -->
+    <groupId>us.edumc_.obsidianstudios</groupId>
+    <artifactId>Bosses-Obsidian</artifactId>
+    <version>1.0.0</version>
+
+    <packaging>jar</packaging>
+
+    <properties>
+        <!-- Versión de Java. Para Minecraft 1.19+ se recomienda Java 17 -->
+        <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <defaultGoal>clean package</defaultGoal>
+        <plugins>
+            <!-- Plugin para compilar el código -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <!--
+                      ESTA ES LA SECCIÓN QUE FUERZA EL USO DE JAVA 17.
+                      ¡¡¡ASEGÚRATE DE QUE LA RUTA SEA CORRECTA EN TU PC!!!
+                    -->
+                    <source>17</source>
+                    <target>17</target>
+                    <executable>C:\Program Files\Eclipse Adoptium\jdk-17.0.8+7\bin\javac.exe</executable>
+                </configuration>
+            </plugin>
+            <!-- Plugin para empaquetar el .jar final -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
+        </plugins>
+        <!-- Esta sección asegura que tus archivos de recursos (plugin.yml, etc.) se incluyan en el .jar -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+    <repositories>
+        <!-- Repositorio de PaperMC para obtener la API del servidor -->
+        <repository>
+            <id>papermc-repo</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- Dependencia de la API de Paper -->
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.19.4-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+</project>

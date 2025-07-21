@@ -1,0 +1,9 @@
+# Configuración general del plugin ObsidianBosses
+# Puedes añadir más opciones globales aquí en el futuro.
+language: 'es'
+
+# --- Licencia ---
+# ¡No compartas esta clave! Pégala aquí después de comprar el plugin.
+# El plugin no funcionará sin una clave válida.
+license:
+  key: 'TU-CLAVE-DE-LICENCIA-AQUI'

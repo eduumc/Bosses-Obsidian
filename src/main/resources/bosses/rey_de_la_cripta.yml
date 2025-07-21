@@ -1,0 +1,84 @@
+# --- Identidad del Jefe ---
+# Nombre interno usado para comandos como /boss spawn rey_de_la_cripta
+internal_name: 'rey_de_la_cripta'
+# Mob base del juego. ¡Aquí podrías poner un mob de un mod si tienes integración!
+base_mob: 'minecraft:warden'
+# Nombre que se muestra en el juego. Soporta códigos de color y gradientes (si usas un motor de chat compatible).
+display_name: '&8&lRey de la &b&lCripta'
+
+# --- Estadísticas del Jefe ---
+health: 1500.0
+damage_multiplier: 1.5 # 1.0 es normal, 1.5 es 50% más de daño.
+speed_multiplier: 1.1  # 1.0 es normal, 1.1 es 10% más rápido.
+
+# --- Elementos Visuales y Anuncios ---
+boss_bar:
+  enabled: true
+  color: 'purple' # Colores: pink, blue, red, green, yellow, purple, white
+  style: 'segmented_10' # Estilos: solid, segmented_6, segmented_10, segmented_12, segmented_20
+
+announcements:
+  on_spawn:
+    enabled: true
+    type: 'chat' # Puede ser 'chat', 'title', 'action_bar'
+    # Variables disponibles: %boss_name%, %coords%
+    message: '&c¡Un eco helado resuena desde las profundidades! El %boss_name% &cha despertado en &7[%coords%]'
+
+# --- Habilidades del Jefe ---
+abilities:
+  # Invoca 5 zombis cuando la vida baja del 70% por primera vez.
+  - type: 'summon_mobs'
+    trigger: 'on_health_below(70%)'
+    mob_type: 'minecraft:zombie'
+    count: 5
+    cooldown: 60 # En segundos.
+
+  # Cada 20 segundos, invoca 3 esqueletos.
+  - type: 'summon_mobs'
+    trigger: 'on_tick(20s)'
+    mob_type: 'minecraft:skeleton'
+    count: 3
+    cooldown: 20
+
+  # Aplica oscuridad a jugadores a 15 bloques o menos.
+  - type: 'apply_effect'
+    trigger: 'on_player_near(15)'
+    effect: 'darkness'
+    duration: 10 # segundos
+    amplifier: 0
+    cooldown: 25
+
+  # Potencia el ataque sónico del Warden.
+  - type: 'sonic_attack'
+    trigger: 'on_damage_taken'
+    damage_multiplier: 1.2
+    cooldown: 15
+
+# --- Botín (Loot Table) ---
+# El botín se suelta al morir el jefe.
+loot:
+  # Item custom (requiere otro plugin como ItemsAdder o ser un item vanilla renombrado)
+  - item: 'custom:moneda_del_olvido'
+    chance: 100.0 # 100% de probabilidad
+    amount: 1
+
+  # Items de Minecraft
+  - item: 'minecraft:diamond'
+    chance: 75.0
+    amount: '3-5' # Rango de cantidad
+
+  - item: 'minecraft:enchanted_golden_apple'
+    chance: 50.0
+    amount: 1
+
+  - item: 'minecraft:bone'
+    chance: 100.0
+    amount: '8-16'
+
+  - item: 'minecraft:emerald'
+    chance: 80.0
+    amount: '2-6'
+
+  # Ejecuta un comando desde la consola. %player_name% es quien dio el último golpe.
+  - command: 'lp user %player_name% permission set trophies.rey_de_la_cripta true'
+    chance: 100.0
